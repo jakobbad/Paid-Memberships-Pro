@@ -1,0 +1,12 @@
+<?php
+/**
+ * Disable archive filtering on the "My Events" page of BuddyPress.
+ * Add this code to your Customizations Plugin.
+ */
+// Let "my events" show on BuddyPress.
+function my_remove_content_restriction_for_my_events() {
+	if( strpos( $_SERVER['REQUEST_URI'], 'my-events' ) || strpos( $_SERVER['REQUEST_URI'], 'members' ) ) {
+		remove_filter('em_events_get','pmpro_events_events_manager_em_events_get', 10, 2);
+	}
+}
+add_action( 'init', 'my_remove_content_restriction_for_my_events', 999 );
