@@ -4,7 +4,7 @@
  * Add this code to your PMPro Customizations and tweak to your liking.
  */
  
-function my_pmprorh_init() {
+function my_pmprorh_init_first_aid_certificate() {
 	//don't break if Register Helper is not loaded
 	if(!function_exists( 'pmprorh_add_registration_field' )) {
 		return false;
@@ -17,6 +17,9 @@ function my_pmprorh_init() {
 		'select',
 		array(
 			'label' => 'Do you have a valid first aid certificate?',
+			'required'  => true,    				// make this field required
+            'levels'     => array(1,2,4,5,6),
+           	'memberslistcsv' => true, 				//includes in CSV export
 			'profile' => true,
 			'options' => array(
 				' ' => 'Please Select',
@@ -33,6 +36,7 @@ function my_pmprorh_init() {
 		array(
 			'label' => 'Please enter expiry date',
 			'profile' => true,
+			'memberslistcsv' => true, 				//includes in CSV export
 			'required' => false,
 		)
 	);
@@ -46,7 +50,7 @@ function my_pmprorh_init() {
 		);
 	//that's it. see the PMPro Register Helper readme for more information and examples.
 }
-add_action( 'init', 'my_pmprorh_init' );
+add_action( 'init', 'my_pmprorh_init_first_aid_certificate' );
 
 
 function add_to_footer_example() {
