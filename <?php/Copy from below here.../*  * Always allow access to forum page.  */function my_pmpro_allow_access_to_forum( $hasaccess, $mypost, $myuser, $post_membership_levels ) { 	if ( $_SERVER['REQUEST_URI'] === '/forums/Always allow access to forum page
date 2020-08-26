@@ -1,0 +1,15 @@
+<?php
+
+// Copy from below here...
+
+/*
+ * Always allow access to forum page.
+ */
+function my_pmpro_allow_access_to_forum( $hasaccess, $mypost, $myuser, $post_membership_levels ) {
+	if ( $_SERVER['REQUEST_URI'] === '/forums/' ) {
+		return true;
+	}
+	
+	return $hasaccess;
+}
+add_filter( "pmpro_has_membership_access_filter", "my_pmpro_allow_access_to_forum", 100, 4 );
